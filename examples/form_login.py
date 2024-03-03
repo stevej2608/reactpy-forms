@@ -20,11 +20,8 @@ class LoginFormData(FormModel):
         return value
 
 
-# @component
+@component
 def TextInput(label: str, field: FieldModel, props: Props):
-
-    # log.info('TextInput [%s]', field)
-
     return html.p(
         html.label(
             label + ' ',
