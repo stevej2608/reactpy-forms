@@ -59,7 +59,7 @@ def get_error(e: ValidationError) -> str:
     return 'unknown Error'
 
 
-def createForm(model: TFormModel, set_model: SetModelFunc[TFormModel]) -> Tuple[FormFunc, FieldFunc]:
+def create_form(model: TFormModel, set_model: SetModelFunc[TFormModel]) -> Tuple[FormFunc, FieldFunc]:
     """Accept the model and setter created by use_form_state() and return
     the Form & Field HOC's that will be used to wrap the form elements
 

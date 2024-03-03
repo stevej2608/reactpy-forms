@@ -11,19 +11,24 @@ Headless forms for ReactPy
 - [X] 100% fully typed python
 
 
-
 ## Usage
 
 	pip install reactpy-forms
 
 [orm_login.py](./examples/form_login.py)
 ```python
+
+class LoginFormData(FormModel):
+    email: Union[str, None] = None
+    password: Union[str, None] = None
+
+
 @component
 def LoginForm():
 
     model, set_model = use_form_state(LoginFormData(email="joe@gmail.com", password="1234"))
 
-    Form, Field = createForm(model, set_model)
+    Form, Field = create_form(model, set_model)
 
     @event(prevent_default=True)
     def onclick(event: EventArgs):

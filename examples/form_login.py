@@ -3,7 +3,7 @@ from pydantic import field_validator, ValidationInfo
 from reactpy import component, html, event
 from reactpy.core.events import EventHandler
 
-from reactpy_forms import createForm, FieldModel, FormModel, FieldValidationError, use_form_state
+from reactpy_forms import create_form, FieldModel, FormModel, FieldValidationError, use_form_state
 from utils.logger import log, logging
 from utils.pico_run import pico_run
 from utils.types import Props, EventArgs
@@ -43,7 +43,7 @@ def LoginForm():
 
     model, set_model = use_form_state(LoginFormData(email="joe@gmail.com", password="1234"))
 
-    Form, Field = createForm(model, set_model)
+    Form, Field = create_form(model, set_model)
 
     @event(prevent_default=True)
     def onclick(event: EventArgs):
