@@ -5,10 +5,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "1a examples/world_example.py",
-      "type": "python",
+      "name": "1a examples/form_complex.py",
+      "type": "debugpy",
       "request": "launch",
-      "module": "examples.world_example",
+      "module": "examples.form_complex",
       "justMyCode": false,
       "console": "internalConsole",
       "internalConsoleOptions": "openOnSessionStart",
@@ -21,14 +21,14 @@
     },
 
     {
-      "name": "2a. PyTest (tests/test_hello.py)",
-      "type": "python",
+      "name": "2a. PyTest (tests/test_login_form.py)",
+      "type": "debugpy",
       "request": "launch",
       "stopOnEntry": false,
       "module": "pytest",
       "args": [
         "-o log_cli=1",
-        "tests/test_hello.py",
+        "tests/test_login_form.py",
         "--headed"
       ],
       "cwd": "${workspaceRoot}",
