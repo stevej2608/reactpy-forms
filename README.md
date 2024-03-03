@@ -1,6 +1,6 @@
 ## reactpy-forms
 
-Headless forms for REactPy[D[D[D[D[e
+Headless forms for ReactPy
 
 ## Usage
 
