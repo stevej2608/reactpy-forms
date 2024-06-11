@@ -1,3 +1,4 @@
+import logging
 from typing import Any, Callable, Dict, Tuple, Union, cast, overload, List
 
 from pydantic import ValidationError
@@ -10,10 +11,11 @@ from reactpy.core.types import State, VdomDict
 
 from reactpy_forms.field_model import FieldValidationError
 from reactpy_forms.form_model import FormModel
-from utils.logger import log
-from utils.types import EventArgs, Props
 
-from .types import FieldFunc, FormFunc, SetModelFunc, TFormModel
+from .types import FieldFunc, FormFunc, SetModelFunc, TFormModel, EventArgs, Props
+
+
+log = logging.getLogger(__name__)
 
 # pylint: disable=protected-access
 # pyright: reportPrivateUsage=false

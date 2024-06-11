@@ -5,6 +5,10 @@ from reactpy.core.types import VdomDict
 from reactpy_forms.field_model import FieldModel
 from reactpy_forms.form_model import TFormModel
 
+EventArgs = Dict[str, Any]
+
+Props = Dict[str, Any]
+
 FieldComponent = Callable[[FieldModel, Dict[Any, Any]], Component]
 Field = Callable[[str, FieldComponent], Component]
 Form = Callable[[List[Component]], Component]
