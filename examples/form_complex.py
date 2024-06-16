@@ -1,40 +1,59 @@
+from typing import Union
 from reactpy import component, event, html
+from reactpy_forms import create_form, FormModel, use_form_state
 
 from utils.logger import log, logging
 from utils.pico_run import pico_run
 from utils.types import EventArgs
 
-from .components.input import FieldSet, Input, RangeSlider, Select
+from .components.input import FieldSet, Input, RangeSlider, Select, TextInput
+
+class ComplexFormData(FormModel):
+    search: Union[str, None] = None
+    text: Union[str, None] = None
+    select: Union[str, None] = None
 
 
 @component
 def ComplexForm():
+
+    model, set_model = use_form_state(ComplexFormData())
+
+    Form, Field = create_form(model, set_model)
 
     @event(prevent_default=True)
     def handle_submit(e: EventArgs):
         log.info('handle_submit %s', e)
 
 
-    return html.form({"on_submit": handle_submit},
+    return Form(
         html.h2("Form elements"),
 
         # Search
 
-        Input(type='search', id='search', name='search', placeholder='Search', label='Search', value=''),
+        Field('search', lambda field, props : TextInput(
+            props({'type': 'search', 'name': 'search', 'placeholder':'Search', 'label': 'Search', 'value':''})
+            )
+        ),
+
 
         # Text
 
-        Input(type='text', id='text', name='text', placeholder='Text', label='Text', value=''),
+        Field('text', lambda field, props : TextInput(
+            props({'type': 'search', 'name': 'text', 'placeholder':'Text', 'label': 'Text', 'value':''})
+            )
+        ),
+
         html.small("Curabitur consequat lacus at lacus porta finibus."),
 
         # Select
 
-        Select(
+        Field('select', lambda field, props : Select(
+            props({'label': 'Select'}),
             html._(
                 html.option({'value': '', 'selected': ''}, "Select…"),
                 html.option("…")
-            ),
-            name='select', label = 'Select'
+            ))
         ),
 
         # File browser

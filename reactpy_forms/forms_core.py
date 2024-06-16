@@ -145,8 +145,10 @@ def create_form(model: TFormModel, set_model: SetModelFunc[TFormModel]) -> Tuple
 
             if isinstance(field_model.value, bool):
                 field_model.value = not field_model.value
+            elif isinstance(field_model.value, str):
+                field_model.value = event['target']['value']
             else:
-                raise FieldValidationError(f'Field "{name}" must be a bool type')
+                raise FieldValidationError(f'Field "{name}" is invalid type')
 
             try:
 
@@ -173,6 +175,14 @@ def create_form(model: TFormModel, set_model: SetModelFunc[TFormModel]) -> Tuple
 
             if 'type' in props and props['type'] in ['button', 'checkbox','radio','reset','submit']:
                 props['onclick'] = onclick
+
+                if props['type'] in ['checkbox'] and field_state.value:
+                    props['checked'] = True
+
+                if props['type'] in ['radio']:
+                    if 'type' in props and field_state.value == props['value']:
+                        props['checked'] = True
+
             else:
                 props['onchange'] = onchange
                 if field_state.value is not None:

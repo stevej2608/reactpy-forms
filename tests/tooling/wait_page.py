@@ -1,6 +1,6 @@
 from typing import Callable, Any, Coroutine
 from playwright.async_api import Page
-from .tooling.wait_stable import wait_page_stable
+from .wait_stable import wait_page_stable
 
 FuncType = Callable[..., Coroutine[Any, Any, Any]]
 

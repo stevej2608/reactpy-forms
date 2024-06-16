@@ -2,6 +2,9 @@ from typing import Literal, Union
 from reactpy import component, html
 from reactpy.core.types import VdomChildren
 from utils.props import props
+from utils.types import Props
+
+from .utils import ID
 
 InputTypes = Literal[
     'button'
@@ -24,6 +27,21 @@ InputTypes = Literal[
     'url',
     'week', 
 ]
+
+def add_id(props: Props):
+    if not 'id' in props:
+        id = ID.inc()
+        props['id'] = id
+    return props['id']
+
+
+@component
+def TextInput(props: Props):
+    id = add_id(props)
+    return html.div(
+        html.label({'html_for': id},  props['label']),
+        html.input(props)
+    )
 
 
 @component
@@ -56,12 +74,11 @@ def RangeSlider(min:int=0, max:int=100, value:int=0, id:Union[str,None]=None, na
     )
 
 @component
-def Select(options: VdomChildren, name:str='', label:str=''):
+def Select(props: Props, options: VdomChildren):
+    id = add_id(props)
     return html.div(
-        html.label({'html_for': id}, label),
-        html.select({'id': id, 'name': name, 'required': ''},
-            options
-        )
+        html.label({'html_for': id}, props['label']),
+        html.select(props, options)
     )
 
 @component
