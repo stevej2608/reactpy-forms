@@ -21,7 +21,7 @@ class LoginFormData(FormModel):
 
 
 @component
-def TextInput(label: str, field: FieldModel, props: Props):
+def TextInput(label: str, props: Props, field: FieldModel):
     return html.p(
         html.label(
             label + ' ',
@@ -48,8 +48,8 @@ def LoginForm():
 
     return Form(
         html.h2("Login"),
-        Field('email', lambda field, props: TextInput('Email', field, props({'id': 'email', 'type':'email'}))),
-        Field('password', lambda field, props: TextInput('Password', field, props({'id': 'password'}))),
+        Field('email', lambda  props, field: TextInput('Email', props({'id': 'email', 'type':'email'}), field,)),
+        Field('password', lambda  props, field: TextInput('Password', props({'id': 'password'}), field,)),
         SubmitButton('Login', model, onclick=onclick)
     )
 

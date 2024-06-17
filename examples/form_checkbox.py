@@ -23,23 +23,23 @@ def TestForm():
     form = Form(
         html.fieldset(
             html.legend("Language preferences:"),
-            Field('english', lambda field, props : html.label(
+            Field('english', lambda  props, _ : html.label(
                 html.input(props({'type': 'checkbox', 'name': 'english'})),
                 "English"
             )),
-            Field('french', lambda field, props : html.label(
+            Field('french', lambda  props, _ : html.label(
                 html.input(props({'type': 'checkbox', 'name': 'french'})),
                 "French"
             )),
-            Field('mandarin', lambda field, props : html.label(
+            Field('mandarin', lambda  props, _ : html.label(
                 html.input(props({'type': 'checkbox', 'name': 'mandarin', 'id': 'mandarin'})),
                 "Mandarin"
             )),
-            Field('thai', lambda field, props : html.label(
+            Field('thai', lambda  props, _ : html.label(
                 html.input(props({'type': 'checkbox', 'name': 'thai'})),
                 "Thai"
             )),
-            Field('dothraki', lambda field, props : html.label(
+            Field('dothraki', lambda  props, _ : html.label(
                 html.input(props({'type': 'checkbox', 'name': 'dothraki', 'id': 'dothraki', 'disabled': True})),
                 "Dothraki"
             ))

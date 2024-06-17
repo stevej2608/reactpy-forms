@@ -36,8 +36,8 @@ def LoginForm():
 
     return Form(
         html.h2("Login"),
-        Field('email', lambda field, props: TextInput('Email', field, props({'id': 'email', 'type':'email'}))),
-        Field('password', lambda field, props: TextInput('Password', field, props({'id': 'password'}))),
+        Field('email', lambda  props, field: TextInput('Email', field, props({'id': 'email', 'type':'email'}))),
+        Field('password', lambda  props, field: TextInput('Password', field, props({'id': 'password'}))),
         SubmitButton('Login', model, onclick=onclick)
     )
 

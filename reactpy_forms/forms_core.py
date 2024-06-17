@@ -86,8 +86,8 @@ def create_form(model: TFormModel, set_model: SetModelFunc[TFormModel]) -> Tuple
 
         Form, Field = createForm(model, set_model)
         return Form(
-            Field('email', lambda field, props: html.input(props({'type':'email'}))),
-            Field('password', lambda field, props: html.input(props({'type': 'password'})))
+            Field('email', lambda  props, field: html.input(props({'type':'email'}))),
+            Field('password', lambda  props, field: html.input(props({'type': 'password'})))
             )
 
     ```
@@ -190,7 +190,7 @@ def create_form(model: TFormModel, set_model: SetModelFunc[TFormModel]) -> Tuple
 
             return props
 
-        form_input = fn(field_state, _props)
+        form_input = fn(_props, field_state)
         return form_input
 
     def _form(*argv:Any, **kwarg: Dict[str, Any]) -> VdomDict:

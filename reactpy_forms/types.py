@@ -1,4 +1,4 @@
-from typing import Callable, List, Dict, Any, Union, Protocol
+from typing import Callable, Dict, Any, Union, Protocol
 from reactpy.core.component import Component
 from reactpy.core.types import VdomDict
 
@@ -9,17 +9,19 @@ EventArgs = Dict[str, Any]
 
 Props = Dict[str, Any]
 
-FieldComponent = Callable[[FieldModel, Dict[Any, Any]], Component]
-Field = Callable[[str, FieldComponent], Component]
-Form = Callable[[List[Component]], Component]
-
+# TODO: Tie this down
 
 class FormFunc(Protocol):
     def __call__(self, *argv:Any, **kwarg: Dict[str, Any]) -> VdomDict: ...
 
+#
+
+_PropsFunc = Callable[[Props], Props]
+_CompnentFunc = Callable[[_PropsFunc, FieldModel], Union[VdomDict, Component]]
 
 class FieldFunc(Protocol):
-    def __call__(self, name:str, fn:Callable[[Any, Any], Any]) -> Component: ...
+    def __call__(self, name:str, fn:_CompnentFunc) -> Component: ...
 
+#
 
 SetModelFunc = Callable[[Union[TFormModel, Callable[[TFormModel],TFormModel]]],None]

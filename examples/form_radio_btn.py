@@ -21,23 +21,23 @@ def TestForm():
     form = Form(
         html.fieldset(
             html.legend("Language preference:"),
-            Field('language', lambda field, props : html.label(
+            Field('language', lambda props, _ : html.label(
                 html.input(props({'type': 'radio', 'name': 'language', 'value': 'english'})),
                 "English"
             )),
-            Field('language', lambda field, props : html.label(
+            Field('language', lambda props, _ : html.label(
                 html.input(props({'type': 'radio', 'name': 'language', 'value': 'french'})),
                 "French"
             )),
-            Field('language', lambda field, props : html.label(
+            Field('language', lambda props, _ : html.label(
                 html.input(props({'type': 'radio', 'name': 'language', 'value': 'manderin'})),
                 "Mandarin"
             )),
-            Field('language', lambda field, props : html.label(
+            Field('language', lambda props, _ : html.label(
                 html.input(props({'type': 'radio', 'name': 'language', 'value': 'thai'})),
                 "Thai"
             )),
-            Field('language', lambda field, props : html.label(
+            Field('language', lambda props, _ : html.label(
                 html.input(props({'type': 'radio', 'name': 'language', 'value': 'dothraki', 'disabled': ''})),
                 "Dothraki"
             ))

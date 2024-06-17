@@ -17,7 +17,7 @@ def TestForm():
     # https://picocss.com/docs/forms/select
 
     form = Form(
-        Field('favorite_food', lambda field, props : html.select(
+        Field('favorite_food', lambda  props, _ : html.select(
             props({'id': 'select_example'}),
             html._(
                 html.option("Select your favorite cuisine.."),
@@ -39,4 +39,3 @@ def TestForm():
 if __name__ == "__main__":
     log.setLevel(logging.INFO)
     pico_run(TestForm)
-

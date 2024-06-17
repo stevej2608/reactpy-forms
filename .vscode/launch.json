@@ -21,10 +21,10 @@
     },
 
     {
-      "name": "1b examples/radio_example.py",
+      "name": "1b examples/form_radio_btn.py",
       "type": "debugpy",
       "request": "launch",
-      "module": "examples.radio_example",
+      "module": "examples.form_radio_btn",
       "justMyCode": false,
       "console": "internalConsole",
       "internalConsoleOptions": "openOnSessionStart",
