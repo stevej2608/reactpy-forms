@@ -24,15 +24,15 @@ def TestForm():
         html.fieldset(
             html.legend("Language preferences:"),
             Field('english', lambda  props, _ : html.label(
-                html.input(props({'type': 'checkbox', 'name': 'english'})),
+                html.input(props({'type': 'checkbox'})),
                 "English"
             )),
             Field('french', lambda  props, _ : html.label(
-                html.input(props({'type': 'checkbox', 'name': 'french'})),
+                html.input(props({'type': 'checkbox'})),
                 "French"
             )),
             Field('mandarin', lambda  props, _ : html.label(
-                html.input(props({'type': 'checkbox', 'name': 'mandarin', 'id': 'mandarin'})),
+                html.input(props({'type': 'checkbox'})),
                 "Mandarin"
             )),
             Field('thai', lambda  props, _ : html.label(
@@ -40,7 +40,7 @@ def TestForm():
                 "Thai"
             )),
             Field('dothraki', lambda  props, _ : html.label(
-                html.input(props({'type': 'checkbox', 'name': 'dothraki', 'id': 'dothraki', 'disabled': True})),
+                html.input(props({'type': 'checkbox', 'disabled': True})),
                 "Dothraki"
             ))
         )

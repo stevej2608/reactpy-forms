@@ -22,23 +22,23 @@ def TestForm():
         html.fieldset(
             html.legend("Language preference:"),
             Field('language', lambda props, _ : html.label(
-                html.input(props({'type': 'radio', 'name': 'language', 'value': 'english'})),
+                html.input(props({'type': 'radio', 'value': 'english'})),
                 "English"
             )),
             Field('language', lambda props, _ : html.label(
-                html.input(props({'type': 'radio', 'name': 'language', 'value': 'french'})),
+                html.input(props({'type': 'radio', 'value': 'french'})),
                 "French"
             )),
             Field('language', lambda props, _ : html.label(
-                html.input(props({'type': 'radio', 'name': 'language', 'value': 'manderin'})),
+                html.input(props({'type': 'radio', 'value': 'manderin'})),
                 "Mandarin"
             )),
             Field('language', lambda props, _ : html.label(
-                html.input(props({'type': 'radio', 'name': 'language', 'value': 'thai'})),
+                html.input(props({'type': 'radio', 'value': 'thai'})),
                 "Thai"
             )),
             Field('language', lambda props, _ : html.label(
-                html.input(props({'type': 'radio', 'name': 'language', 'value': 'dothraki', 'disabled': ''})),
+                html.input(props({'type': 'radio', 'value': 'dothraki', 'disabled': ''})),
                 "Dothraki"
             ))
         )

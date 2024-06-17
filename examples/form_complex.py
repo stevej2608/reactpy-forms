@@ -32,7 +32,7 @@ def ComplexForm():
         # Search
 
         Field('search', lambda  props, _ : TextInput(
-            props({'type': 'search', 'name': 'search', 'placeholder':'Search', 'label': 'Search', 'value':''})
+            props({'type': 'search', 'placeholder':'Search', 'label': 'Search', 'value':''})
             )
         ),
 
@@ -40,7 +40,7 @@ def ComplexForm():
         # Text
 
         Field('text', lambda  props, _ : TextInput(
-            props({'type': 'search', 'name': 'text', 'placeholder':'Text', 'label': 'Text', 'value':''})
+            props({'type': 'search', 'placeholder':'Text', 'label': 'Text', 'value':''})
             )
         ),
 
