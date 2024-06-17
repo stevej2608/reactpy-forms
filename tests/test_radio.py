@@ -20,7 +20,7 @@ async def test_select(pico_container: PicoContainer, page: Page):
     # setup helpers
 
     selected = page_element(page, '#radio_example')
-    get_radio_btn_checked, set_radio_btn = radio_btn_element(page, "input[value='english']")
+    get_radio_btn_checked, set_radio_btn = radio_btn_element(page, "english")
 
     # Confirm initial condiion
 
@@ -28,9 +28,9 @@ async def test_select(pico_container: PicoContainer, page: Page):
 
     # Select and confirm 'French'
 
-    get_radio_btn_checked, set_radio_btn = radio_btn_element(page, "input[value='french']")
+    get_radio_btn_checked, set_radio_btn = radio_btn_element(page, "french")
 
-    await set_radio_btn('French')
+    await set_radio_btn('french')
     assert (await  get_radio_btn_checked()) is True
 
     # Confirm model has been updated
@@ -39,9 +39,9 @@ async def test_select(pico_container: PicoContainer, page: Page):
 
     # Select and confirm 'Thai'
 
-    get_radio_btn_checked, set_radio_btn = radio_btn_element(page, "input[value='thai']")
+    get_radio_btn_checked, set_radio_btn = radio_btn_element(page, "thai")
 
-    await set_radio_btn('Thai')
+    await set_radio_btn('thai')
     assert (await  get_radio_btn_checked()) is True
 
     # Confirm model has been updated

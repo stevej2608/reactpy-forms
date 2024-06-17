@@ -20,7 +20,7 @@ async def test_select(pico_container: PicoContainer, page: Page):
     # setup helpers
 
     selected = page_element(page, '#selected_example')
-    select, select_option = select_element(page, '#select_example')
+    get_select_option, set_select_option = select_element(page, '#select_example')
 
     # Confirm initial condiion
 
@@ -28,8 +28,8 @@ async def test_select(pico_container: PicoContainer, page: Page):
 
     # Select and confirm 'Japanese'
 
-    await select_option('Japanese')
-    assert (await  select()) == 'Japanese'
+    await set_select_option('Japanese')
+    assert (await  get_select_option()) == 'Japanese'
 
     # Confirm model has been updated
 
@@ -37,8 +37,8 @@ async def test_select(pico_container: PicoContainer, page: Page):
 
     # Select and confirm 'Italian'
 
-    await select_option('Italian')
-    assert (await  select()) == 'Italian'
+    await set_select_option('Italian')
+    assert (await  get_select_option()) == 'Italian'
 
     # Confirm model has been updated
 

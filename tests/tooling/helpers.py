@@ -47,7 +47,7 @@ def select_element(page: Page, name: str):
     # https://playwright.dev/python/docs/api/class-locator#locator-select-option
 
     @wait_page(page)
-    async def get_selection():
+    async def get_select_option():
         element = await page.query_selector(name)
         if element:
             value = await element.get_property('value')
@@ -56,19 +56,19 @@ def select_element(page: Page, name: str):
             return None
 
     @wait_page(page)
-    async def select_option(value:str):
+    async def set_select_option(value:str):
         element = await page.query_selector(name)
         if element:
             await element.select_option(value)
 
-    return get_selection, select_option
+    return get_select_option, set_select_option
 
 
 def checkbox_element(page: Page, name: str):
 
     @wait_page(page)
     async def get_checked():
-        element = await page.query_selector(name)
+        element = await page.query_selector(f"input[name='{name}']")
         if element:
             value = await element.get_property('checked')
             # value = await element.get_property('value')
@@ -78,7 +78,7 @@ def checkbox_element(page: Page, name: str):
 
     @wait_page(page)
     async def set_checkbox(value:bool):
-        element = await page.query_selector(name)
+        element = await page.query_selector(f"input[name='{name}']")
         if element:
 
             # https://playwright.dev/python/docs/api/class-locator#locator-set-checked
@@ -92,21 +92,20 @@ def checkbox_element(page: Page, name: str):
     return get_checked, set_checkbox
 
 
-def radio_btn_element(page: Page, selector: str):
+def radio_btn_element(page: Page, value: str):
 
     @wait_page(page)
     async def get_radio_btn():
-        element = await page.query_selector(selector)
+        element = await page.query_selector(f"input[value='{value}']")
         if element:
-            value = await element.get_property('checked')
-            # value = await element.get_property('value')
-            return str(value) == 'true'
+            val = await element.get_property('checked')
+            return str(val) == 'true'
         else:
             return None
 
     @wait_page(page)
     async def set_radio_btn(value:str):
-        element = await page.query_selector(f"css={selector}")
+        element = await page.query_selector(f"input[value='{value}']")
         if element:
 
             # https://playwright.dev/python/docs/api/class-locator#locator-set-checked

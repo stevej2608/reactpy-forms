@@ -26,7 +26,7 @@ async def test_checkbox(pico_container: PicoContainer, page: Page):
 
     # Select and confirm 'Manderin'
 
-    get_checked, set_checked = checkbox_element(page, '#mandarin')
+    get_checked, set_checked = checkbox_element(page, 'mandarin')
 
     await set_checked(True)
     assert (await  get_checked()) is True
@@ -37,7 +37,7 @@ async def test_checkbox(pico_container: PicoContainer, page: Page):
 
     # Select and confirm 'Dothraki'
 
-    get_checked, set_checked = checkbox_element(page, '#dothraki')
+    get_checked, set_checked = checkbox_element(page, 'dothraki')
 
     # await check_dothraki(True)
     assert (await  get_checked()) is False
