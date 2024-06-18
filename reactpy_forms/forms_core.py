@@ -182,7 +182,7 @@ def create_form(model: TFormModel, set_model: SetModelFunc[TFormModel]) -> Tuple
                     props['checked'] = True
 
                 if props['type'] in ['radio']:
-                    if 'type' in props and field_state.value == props['value']:
+                    if 'type' in props and str(field_state.value) == props['value']:
                         props['checked'] = True
 
             else:
