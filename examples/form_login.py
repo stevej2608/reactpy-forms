@@ -32,7 +32,7 @@ def TextInput(label: str, props: Props, field: FieldModel):
 
 @component
 def SubmitButton(label: str, model: FormModel, onclick: EventHandler):
-    return html.input({'type': 'submit', 'value': label, 'disabled': model.has_errors(), 'onclick': onclick})
+    return html.input({'type': 'submit', 'value': label, 'disabled': model.has_errors(), 'on_click': onclick})
 
 
 @component
