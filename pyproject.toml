@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "reactpy-forms"
-version = "0.0.3"
+version = "0.0.4"
 description = ""
 authors = ["Steve Jones <jonesst2608@gmail.com>"]
 readme = "README.md"
@@ -11,7 +11,7 @@ include = ["reactpy-forms/*.py"]
 
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = ">=3.9,<4.0"
 reactpy = "^1.0.2"
 
 [tool.poetry.group.dev.dependencies]
