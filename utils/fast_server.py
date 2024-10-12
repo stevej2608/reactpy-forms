@@ -6,10 +6,12 @@ from pathlib import Path
 from typing import Any, Callable
 
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from starlette.websockets import WebSocketDisconnect
 from reactpy import html
 from reactpy.backend.fastapi import Options as FastApiOptions
 from reactpy.backend.fastapi import configure
+
 from reactpy.core.component import Component
 
 from utils.logger import log, logging, disable_noisy_logs
@@ -21,7 +23,6 @@ from utils.var_name import var_name
 # pyright: reportUnusedFunction=false
 
 app = FastAPI(description="ReactPy", version="0.1.0")
-
 
 
 def extract_wrapped(decorated: Callable[..., Component]) -> FunctionType:
@@ -88,6 +89,15 @@ def run(
             disable_noisy_logs()
         log.info("Uvicorn running on  http://%s:%s (Press CTRL+C to quit)", host, port)
 
+    @app.exception_handler(ExceptionGroup)
+    async def websocket_disconnect_handler(request: Request, exc: ExceptionGroup):
+        if len(exc.exceptions) == 1 and isinstance(exc.exceptions[0], WebSocketDisconnect):
+            websocket_disconnect = exc.exceptions[0]
+            log.info("WebSocket %s disconnected with code %s", request.url, websocket_disconnect.code)
+            # No response, as client is not listening
+        else:
+            # If it's not a WebSocketDisconnect, re-raise the exception
+            raise exc
 
     try:
         log.setLevel(logging.INFO)
