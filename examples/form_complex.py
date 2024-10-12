@@ -1,5 +1,6 @@
 from typing import Union
 from reactpy import component, event, html
+from reactpy.core.events import EventHandler
 from reactpy_forms import create_form, FormModel, use_form_state
 
 from utils.logger import log, logging
@@ -12,6 +13,7 @@ class ComplexFormData(FormModel):
     search: Union[str, None] = None
     text: Union[str, None] = None
     select: Union[str, None] = None
+    file: Union[str, None] = None
 
 
 @component
@@ -22,8 +24,12 @@ def ComplexForm():
     Form, Field = create_form(model, set_model)
 
     @event(prevent_default=True)
-    def handle_submit(e: EventArgs):
-        log.info('handle_submit %s', e)
+    def onclick(event: EventArgs):
+        log.info('SUBMIT [%s]', model)
+
+    @component
+    def SubmitButton(label: str, model: FormModel, onclick: EventHandler):
+        return html.input({'type': 'submit', 'value': label, 'disabled': model.has_errors(), 'on_click': onclick})
 
 
     return Form(
@@ -114,7 +120,7 @@ def ComplexForm():
         ),
         # Buttons,
         Input(type='reset', value='Reset'),
-        Input(type='submit', value='Submit')
+        SubmitButton('Submit', model, onclick=onclick)
     )
 
 # python -m examples.form_complex
