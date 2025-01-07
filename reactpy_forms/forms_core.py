@@ -105,7 +105,7 @@ def create_form(model: TFormModel, set_model: SetModelFunc[TFormModel]) -> Tuple
 
             field_model = model.get_field(name)
 
-            field_model.value = event['currentTarget']['value']
+            field_model.value = event['target']['value']
             field_model.error = ''
 
             # log.info('on_change [%s]', field_model)
