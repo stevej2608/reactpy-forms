@@ -1,30 +1,75 @@
-[tool.poetry]
-name = "reactpy-forms"
-version = "0.0.7"
-description = ""
-authors = ["Steve Jones <jonesst2608@gmail.com>"]
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+##############################
+# >>> Hatch Build Config <<< #
+##############################
+
+[project]
+name = "reactpy_forms"
+description = "Forms library for ReactPy"
 readme = "README.md"
+keywords = ["React", "ReactJS", "ReactPy", "forms", "components"]
 license = "MIT"
-homepage = "https://github.com/stevej2608/reactpy-forms/README.md"
-repository = "https://github.com/stevej2608/reactpy-forms"
-include = ["reactpy-forms/*.py"]
+authors = [{ name = "Steve Jones", email = "jonesst2608@gmail.com" }]
+requires-python = ">=3.9"
+classifiers = [
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Operating System :: OS Independent",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Widget Sets",
+  "Topic :: Software Development :: User Interfaces",
+  "Environment :: Web Environment",
+  "Typing :: Typed",
+]
+dependencies = ["reactpy>=1.1.0"]
+dynamic = ["version"]
+urls.Homepage = "https://github.com/stevej2608/reactpy-forms"
+urls.Repository = "https://github.com/stevej2608/reactpy-forms"
 
+[tool.hatch.version]
+path = "reactpy_forms/__init__.py"
 
-[tool.poetry.dependencies]
-python = ">=3.9,<4.0"
-reactpy = "^1.1.0"
+[tool.hatch.build.targets.sdist]
+include = ["/reactpy_forms"]
 
-[tool.poetry.group.dev.dependencies]
-pytest-timeout = "2.2.0"
-fastapi = "^0.109.0"
-playwright = "1.41.1"
-pytest = "^7.4.4"
-pytest-asyncio = "^0.23.3"
-starlette = ">=0.13.6"
-trio = "^0.24.0"
-twine = "^4.0.2"
-uvicorn = {extras = ["standard"], version = ">=0.19.0"}
+[tool.hatch.build.targets.wheel]
+packages = ["reactpy_forms"]
 
+[tool.hatch.metadata]
+license-files = { paths = ["LICENSE"] }
+
+[tool.hatch.envs.default]
+installer = "uv"
+
+#############################
+# >>> Hatch Test Runner <<< #
+#############################
+
+[tool.hatch.envs.hatch-test]
+extra-dependencies = [
+  "pytest-timeout==2.2.0",
+  "fastapi>=0.109.0",
+  "playwright==1.41.1",
+  "pytest>=7.4.4",
+  "pytest-asyncio>=0.23.3",
+  "starlette>=0.13.6",
+  "trio>=0.24.0",
+  "uvicorn[standard]>=0.19.0,<0.36.0",
+]
+randomize = true
+matrix-name-format = "{variable}-{value}"
+
+[[tool.hatch.envs.hatch-test.matrix]]
+python = ["3.9", "3.10", "3.11", "3.12"]
+
+#########################
+# >>> Generic Tools <<< #
+#########################
 
 [tool.ruff]
 # https://docs.astral.sh/ruff/configuration/
@@ -43,15 +88,10 @@ testpaths = "tests"
 log_cli_level = "INFO"
 filterwarnings = "ignore::DeprecationWarning"
 
-# -r Show extra test summary info as specified by chars: 
-#   (s)kipped, 
-#   (x)failed, 
-#   (X)passed, 
+# -r Show extra test summary info as specified by chars:
+#   (s)kipped,
+#   (x)failed,
+#   (X)passed,
 # addopts = "-rsxX"
 
 # asyncio_mode = "auto"
-
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
