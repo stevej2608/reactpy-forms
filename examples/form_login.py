@@ -31,8 +31,8 @@ def TextInput(label: str, props: Props, field: FieldModel):
     )
 
 @component
-def SubmitButton(label: str, model: FormModel, onclick: EventHandler):
-    return html.input({'type': 'submit', 'value': label, 'disabled': model.has_errors(), 'on_click': onclick})
+def SubmitButton(label: str, model: FormModel, on_click: EventHandler):
+    return html.input({'type': 'submit', 'value': label, 'disabled': model.has_errors(), 'on_click': on_click})
 
 
 @component
@@ -43,14 +43,14 @@ def LoginForm():
     Form, Field = create_form(model, set_model)
 
     @event(prevent_default=True)
-    def onclick(event: EventArgs):
+    def on_click(event: EventArgs):
         log.info('SUBMIT [%s]', model)
 
     return Form(
         html.h2("Login"),
         Field('email', lambda  props, field: TextInput('Email', props({'id': 'email', 'type':'email'}), field,)),
         Field('password', lambda  props, field: TextInput('Password', props({'id': 'password'}), field,)),
-        SubmitButton('Login', model, onclick=onclick)
+        SubmitButton('Login', model, on_click=on_click)
     )
 
 

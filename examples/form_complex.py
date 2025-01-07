@@ -24,12 +24,12 @@ def ComplexForm():
     Form, Field = create_form(model, set_model)
 
     @event(prevent_default=True)
-    def onclick(event: EventArgs):
+    def on_click(event: EventArgs):
         log.info('SUBMIT [%s]', model)
 
     @component
-    def SubmitButton(label: str, model: FormModel, onclick: EventHandler):
-        return html.input({'type': 'submit', 'value': label, 'disabled': model.has_errors(), 'on_click': onclick})
+    def SubmitButton(label: str, model: FormModel, on_click: EventHandler):
+        return html.input({'type': 'submit', 'value': label, 'disabled': model.has_errors(), 'on_click': on_click})
 
 
     return Form(
@@ -120,7 +120,7 @@ def ComplexForm():
         ),
         # Buttons,
         Input(type='reset', value='Reset'),
-        SubmitButton('Submit', model, onclick=onclick)
+        SubmitButton('Submit', model, on_click=on_click)
     )
 
 # python -m examples.form_complex

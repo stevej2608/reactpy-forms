@@ -101,14 +101,14 @@ def create_form(model: TFormModel, set_model: SetModelFunc[TFormModel]) -> Tuple
         # TODO: extract common code from event handlers
 
         @event(prevent_default=True)
-        def onchange(event: EventArgs):
+        def on_change(event: EventArgs):
 
             field_model = model.get_field(name)
 
             field_model.value = event['currentTarget']['value']
             field_model.error = ''
 
-            # log.info('onchange [%s]', field_model)
+            # log.info('on_change [%s]', field_model)
 
             try:
 
@@ -139,7 +139,7 @@ def create_form(model: TFormModel, set_model: SetModelFunc[TFormModel]) -> Tuple
                 set_model(new_model)
 
         @event(prevent_default=True)
-        def onclick(event: EventArgs):
+        def on_click(event: EventArgs):
             field_model = model.get_field(name)
             # log.info('get_field_state [%s]', field_model)
 
@@ -176,7 +176,7 @@ def create_form(model: TFormModel, set_model: SetModelFunc[TFormModel]) -> Tuple
             props['name'] = name
 
             if 'type' in props and props['type'] in ['button', 'checkbox','radio','reset','submit']:
-                props['on_click'] = onclick
+                props['on_click'] = on_click
 
                 if props['type'] in ['checkbox'] and field_state.value:
                     props['checked'] = True
@@ -186,7 +186,7 @@ def create_form(model: TFormModel, set_model: SetModelFunc[TFormModel]) -> Tuple
                         props['checked'] = True
 
             else:
-                props['onchange'] = onchange
+                props['on_change'] = on_change
                 if field_state.value is not None:
                     props['value'] = field_state.value
 
