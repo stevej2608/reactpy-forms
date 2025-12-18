@@ -185,7 +185,7 @@ def create_form(model: TFormModel, set_model: SetModelFunc[TFormModel]) -> Tuple
                         props['checked'] = True
 
             else:
-                props['on_change'] = on_change
+                props['onChange'] = on_change
                 if field_state.value is not None:
                     props['value'] = field_state.value
 

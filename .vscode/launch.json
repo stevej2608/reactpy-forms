@@ -43,9 +43,7 @@
       "stopOnEntry": false,
       "module": "pytest",
       "args": [
-        "-o log_cli=1",
-        "tests/test_login_form.py",
-        "--headed"
+        "tests/test_login_form.py"
       ],
       "cwd": "${workspaceRoot}",
       "console": "internalConsole",

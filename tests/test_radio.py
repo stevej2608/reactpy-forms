@@ -9,7 +9,6 @@ from examples.form_radio_btn import TestForm
 
 # pytest -o log_cli=1 --headed tests/test_radio.py
 
-@pytest.mark.anyio
 async def test_select(pico_container: PicoContainer, page: Page):
     """Confirm support for html radio buttons field"""
 

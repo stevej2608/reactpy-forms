@@ -1,17 +1,18 @@
-import pytest
+
 from playwright.async_api import Page
 
 from examples.form_login import LoginForm
 from tests.page_containers import PicoContainer
 from tests.tooling.helpers import page_element, input_field
 
+from .tooling import page_stable
 
 # hatch test tests/test_login_form.py
 
-@pytest.mark.anyio
 async def test_form(pico_container: PicoContainer, page: Page):
 
     await pico_container.show(LoginForm)
+    await pico_container.page_stable()
 
     get_error = page_element(page, '#email-error')
 

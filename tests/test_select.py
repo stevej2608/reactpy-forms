@@ -9,7 +9,6 @@ from examples.form_select import TestForm
 
 # pytest -o log_cli=1 --headed tests/test_select.py
 
-@pytest.mark.anyio
 async def test_select(pico_container: PicoContainer, page: Page):
     """Confirm support for html select field"""
 

@@ -8,7 +8,7 @@ from examples.form_checkbox import TestForm
 
 # pytest -o log_cli=1 --headed tests/test_checkbox.py
 
-@pytest.mark.anyio
+
 async def test_checkbox(pico_container: PicoContainer, page: Page):
     """Confirm support for html checkbox field"""
 
