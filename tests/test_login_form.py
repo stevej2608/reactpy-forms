@@ -6,7 +6,7 @@ from tests.page_containers import PicoContainer
 from tests.tooling.helpers import page_element, input_field
 
 
-# pytest -o log_cli=1 --headed tests/test_login_form.py
+# hatch test tests/test_login_form.py
 
 @pytest.mark.anyio
 async def test_form(pico_container: PicoContainer, page: Page):

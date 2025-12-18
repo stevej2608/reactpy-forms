@@ -1,11 +1,10 @@
 from typing import Union
 from pydantic import field_validator, ValidationInfo
 from reactpy import component, html, event
-from reactpy.core.events import EventHandler
+from reactpy.types import EventHandlerType
 
 from reactpy_forms import create_form, FieldModel, FormModel, FieldValidationError, use_form_state
 from utils.logger import log, logging
-from utils.pico_run import pico_run
 from utils.types import Props, EventArgs
 
 class LoginFormData(FormModel):
@@ -31,8 +30,8 @@ def TextInput(label: str, props: Props, field: FieldModel):
     )
 
 @component
-def SubmitButton(label: str, model: FormModel, on_click: EventHandler):
-    return html.input({'type': 'submit', 'value': label, 'disabled': model.has_errors(), 'on_click': on_click})
+def SubmitButton(label: str, model: FormModel, on_click: EventHandlerType):
+    return html.input({'type': 'submit', 'value': label, 'disabled': model.has_errors(), 'onClick': on_click})
 
 
 @component
@@ -57,5 +56,6 @@ def LoginForm():
 # python -m examples.form_login
 
 if __name__ == "__main__":
+    from utils.pico_run import pico_run
     log.setLevel(logging.INFO)
     pico_run(LoginForm)

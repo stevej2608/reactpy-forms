@@ -26,7 +26,7 @@ classifiers = [
   "Environment :: Web Environment",
   "Typing :: Typed",
 ]
-dependencies = ["reactpy>=1.1.0"]
+dependencies = ["reactpy==2.0.0b4"]
 dynamic = ["version"]
 urls.Homepage = "https://github.com/stevej2608/reactpy-forms"
 urls.Repository = "https://github.com/stevej2608/reactpy-forms"
@@ -57,9 +57,12 @@ extra-dependencies = [
   "playwright==1.41.1",
   "pytest>=7.4.4",
   "pytest-asyncio>=0.23.3",
-  "starlette>=0.13.6",
   "trio>=0.24.0",
-  "uvicorn[standard]>=0.19.0,<0.36.0",
+  "uvicorn[standard]>=0.19.0",
+  "asgiref",
+  "asgi-tools",
+  "servestatic",
+  "orjson"
 ]
 randomize = true
 matrix-name-format = "{variable}-{value}"

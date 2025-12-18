@@ -2,7 +2,6 @@
 from reactpy import component, html
 from reactpy_forms import FormModel, create_form, use_form_state
 from utils.logger import log, logging
-from utils.pico_run import pico_run
 
 
 class FormData(FormModel):
@@ -53,5 +52,6 @@ def TestForm():
 # python -m examples.form_radio_btn
 
 if __name__ == "__main__":
+    from utils.pico_run import pico_run
     log.setLevel(logging.INFO)
     pico_run(TestForm)

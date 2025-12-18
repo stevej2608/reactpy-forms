@@ -1,10 +1,9 @@
 from typing import Union
 from reactpy import component, event, html
-from reactpy.core.events import EventHandler
+from reactpy.types import EventHandlerType
 from reactpy_forms import create_form, FormModel, use_form_state
 
 from utils.logger import log, logging
-from utils.pico_run import pico_run
 from utils.types import EventArgs
 
 from .components.input import FieldSet, Input, RangeSlider, Select, TextInput
@@ -28,8 +27,8 @@ def ComplexForm():
         log.info('SUBMIT [%s]', model)
 
     @component
-    def SubmitButton(label: str, model: FormModel, on_click: EventHandler):
-        return html.input({'type': 'submit', 'value': label, 'disabled': model.has_errors(), 'on_click': on_click})
+    def SubmitButton(label: str, model: FormModel, on_click: EventHandlerType):
+        return html.input({'type': 'submit', 'value': label, 'disabled': model.has_errors(), 'onClick': on_click})
 
 
     return Form(
@@ -72,14 +71,14 @@ def ComplexForm():
 
         # States
 
-        html.div({'class_name': 'grid'},
+        html.div({'class': 'grid'},
             Input(type='text', id='valid', name='valid', placeholder='valid', label='Valid', invalid=False),
             Input(type='text', id='invalid', name='invalid', placeholder='invalid', label='Invalid', invalid=True),
             Input(type='text', id='disabled', name='disabled',placeholder='disabled' ,label='Disabled', disabled=True),
 
         ),
 
-        html.div({'class_name': 'grid'},
+        html.div({'class': 'grid'},
             # Date
             Input(type='date', id='date', name='date', label='Date'),
             # Time
@@ -88,7 +87,7 @@ def ComplexForm():
             Input(type='color', id='color', name='color', label='Color')
 
         ),
-        html.div({'class_name': 'grid'},
+        html.div({'class': 'grid'},
 
             # Checkboxes,
 
@@ -126,5 +125,6 @@ def ComplexForm():
 # python -m examples.form_complex
 
 if __name__ == "__main__":
+    from utils.pico_run import pico_run
     log.setLevel(logging.INFO)
     pico_run(ComplexForm)

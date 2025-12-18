@@ -1,6 +1,5 @@
 from typing import Callable, Dict, Any, Union, Protocol
-from reactpy.core.component import Component
-from reactpy.core.types import VdomDict
+from reactpy.types import ComponentType, VdomDict
 
 from reactpy_forms.field_model import FieldModel
 from reactpy_forms.form_model import TFormModel
@@ -17,10 +16,10 @@ class FormFunc(Protocol):
 #
 
 _PropsFunc = Callable[[Props], Props]
-_CompnentFunc = Callable[[_PropsFunc, FieldModel], Union[VdomDict, Component]]
+_CompnentFunc = Callable[[_PropsFunc, FieldModel], Union[VdomDict, ComponentType]]
 
 class FieldFunc(Protocol):
-    def __call__(self, name:str, fn:_CompnentFunc) -> Component: ...
+    def __call__(self, name:str, fn:_CompnentFunc) -> ComponentType: ...
 
 #
 

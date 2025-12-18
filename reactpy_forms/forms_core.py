@@ -5,9 +5,8 @@ from pydantic import ValidationError
 from pydantic_core import ErrorDetails
 
 from reactpy import event, html, use_state
-from reactpy.core.component import Component
-from reactpy.core.hooks import current_hook
-from reactpy.core.types import State, VdomDict
+from reactpy.types import ComponentType, State, VdomDict
+from reactpy.core.hooks import HOOK_STACK
 
 from reactpy_forms.field_model import FieldValidationError
 from reactpy_forms.form_model import FormModel
@@ -46,7 +45,7 @@ def use_form_state(initial_value: TFormModel | Callable[[], TFormModel]) -> Stat
 
     # TODO - change LifeCycleHook to make ._rendered_atleast_once accessible
 
-    if not current_hook()._rendered_atleast_once: #noqa
+    if not HOOK_STACK.current_hook()._rendered_atleast_once: #noqa
         model.init_field_model()
 
     return State(model, dispatch)
@@ -93,7 +92,7 @@ def create_form(model: TFormModel, set_model: SetModelFunc[TFormModel]) -> Tuple
     ```
     """
 
-    def _field(name:str, fn:Callable[[Any, Any], Any]) -> Component:
+    def _field(name:str, fn:Callable[[Any, Any], Any]) -> ComponentType:
 
         if not model.has_field(name):
             raise FieldValidationError(f'Field "{name}" is not defined in the form model')
@@ -176,7 +175,7 @@ def create_form(model: TFormModel, set_model: SetModelFunc[TFormModel]) -> Tuple
             props['name'] = name
 
             if 'type' in props and props['type'] in ['button', 'checkbox','radio','reset','submit']:
-                props['on_click'] = on_click
+                props['onClick'] = on_click
 
                 if props['type'] in ['checkbox'] and field_state.value:
                     props['checked'] = True

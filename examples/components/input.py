@@ -1,6 +1,6 @@
 from typing import Literal, Union
 from reactpy import component, html
-from reactpy.core.types import VdomChildren
+from reactpy.types import VdomChildren
 from utils.props import props
 from utils.types import Props
 
