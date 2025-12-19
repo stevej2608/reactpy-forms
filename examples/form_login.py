@@ -7,6 +7,7 @@ from reactpy_forms import create_form, FieldModel, FormModel, FieldValidationErr
 from utils.logger import log, logging
 from utils.types import Props, EventArgs
 
+
 class LoginFormData(FormModel):
     email: Union[str, None] = None
     password: Union[str, None] = None
@@ -44,6 +45,8 @@ def LoginForm():
     @event(prevent_default=True)
     def on_click(event: EventArgs):
         log.info('SUBMIT [%s]', model)
+
+    log.info('update model=%s', model)
 
     return Form(
         html.h2("Login"),

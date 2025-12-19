@@ -15,7 +15,8 @@ async def test_select(pico_container: PicoContainer, page: Page):
     # Render the test component
 
     await pico_container.show(TestForm)
-
+    await pico_container.page_stable()
+    
     # setup helpers
 
     selected = page_element(page, '#selected_example')

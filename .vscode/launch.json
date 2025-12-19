@@ -37,6 +37,22 @@
     },
 
     {
+      "name": "1c examples/form_login.py",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "examples.form_login",
+      "justMyCode": false,
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart",
+      "serverReadyAction": {
+        "pattern": "Uvicorn running on\\s+(https?://\\S+)",
+        "uriFormat": "%s/",
+        "action": "debugWithChrome",
+        "killOnServerStop": true
+      }
+    },
+
+    {
       "name": "2a. PyTest (tests/test_login_form.py)",
       "type": "debugpy",
       "request": "launch",
@@ -59,8 +75,7 @@
       "module": "pytest",
       "args": [
         "-o log_cli=1",
-        "tests/test_select.py",
-        "--headed"
+        "tests/test_select.py"
       ],
       "cwd": "${workspaceRoot}",
       "console": "internalConsole",
@@ -76,8 +91,7 @@
       "module": "pytest",
       "args": [
         "-o log_cli=1",
-        "tests/test_checkbox.py",
-        "--headed"
+        "tests/test_checkbox.py"
       ],
       "cwd": "${workspaceRoot}",
       "console": "internalConsole",
@@ -93,8 +107,7 @@
       "module": "pytest",
       "args": [
         "-o log_cli=1",
-        "tests/test_radio.py",
-        "--headed"
+        "tests/test_radio.py"
       ],
       "cwd": "${workspaceRoot}",
       "console": "internalConsole",

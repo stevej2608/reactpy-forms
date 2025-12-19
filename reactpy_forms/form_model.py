@@ -44,8 +44,7 @@ class FormModel(BaseModel):
 
 
     def set_model(self, model:Dict[str, FieldModel]) -> None:
-        for name, value in model.items():
-            self._field_model[name] = value
+        self._field_model = model
 
     def get_field(self, name:str) -> FieldModel:
         return self._field_model[name].model_copy()
@@ -74,7 +73,8 @@ class FormModel(BaseModel):
             FormModel:The composite form & field model
         """
 
-        field_model = model.get_model()
+        # Create a copy of the field_model dictionary to avoid sharing references
+        field_model = {name: field.model_copy() for name, field in model.get_model().items()}
 
         for name in model.model_dump():
 
