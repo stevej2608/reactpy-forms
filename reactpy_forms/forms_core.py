@@ -104,9 +104,18 @@ def create_form(model: TFormModel, set_model: SetModelFunc[TFormModel]) -> Tuple
 
             field_model = model.get_field(name)
 
-            field_model.value = event['target']['value']
-            field_model.error = ''
+            if 'value' in event['target']:
+                field_model.value = event['target']['value']
+            else:
 
+                # Handle select
+
+                for selection in event['currentTarget']:
+                    if selection['selected']:
+                        field_model.value = selection['value']
+                        break 
+
+            field_model.error = ''
 
             log.info('on_change [%s]', field_model)
 
@@ -115,10 +124,6 @@ def create_form(model: TFormModel, set_model: SetModelFunc[TFormModel]) -> Tuple
                 # Update the model (this may fail validation)
 
                 new_model = FormModel.update_model(model, update=field_model)
-
-                # Inputs must be valid, update the external model
-                log.info('SUCCESS CASE - old model id: %s, new model id: %s', id(model), id(new_model))
-                log.info('SUCCESS CASE - old _field_model id: %s, new _field_model id: %s', id(model._field_model), id(new_model._field_model))
 
                 set_model(new_model)
 
@@ -137,8 +142,6 @@ def create_form(model: TFormModel, set_model: SetModelFunc[TFormModel]) -> Tuple
                 new_model.set_field(field_model)
 
                 # Update the external state
-                log.info('ERROR CASE - old model id: %s, new model id: %s', id(model), id(new_model))
-                log.info('ERROR CASE - old _field_model id: %s, new _field_model id: %s', id(model._field_model), id(new_model._field_model))
 
                 set_model(new_model)
 
