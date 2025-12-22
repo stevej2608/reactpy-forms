@@ -15,16 +15,13 @@ license = "MIT"
 authors = [{ name = "Steve Jones", email = "jonesst2608@gmail.com" }]
 requires-python = ">=3.9"
 classifiers = [
-  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
-  "Operating System :: OS Independent",
-  "Intended Audience :: Developers",
-  "Topic :: Software Development :: Widget Sets",
-  "Topic :: Software Development :: User Interfaces",
-  "Environment :: Web Environment",
-  "Typing :: Typed",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = ["reactpy==2.0.0b4"]
 dynamic = ["version"]
@@ -32,13 +29,13 @@ urls.Homepage = "https://github.com/stevej2608/reactpy-forms"
 urls.Repository = "https://github.com/stevej2608/reactpy-forms"
 
 [tool.hatch.version]
-path = "reactpy_forms/__init__.py"
+path = "src/reactpy_forms/__init__.py"
 
 [tool.hatch.build.targets.sdist]
-include = ["/reactpy_forms"]
+include = ["/src", "/tests", "/examples", "/utils"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["reactpy_forms"]
+packages = ["src/reactpy_forms"]
 
 [tool.hatch.metadata]
 license-files = { paths = ["LICENSE"] }
@@ -52,25 +49,48 @@ installer = "uv"
 
 [tool.hatch.envs.hatch-test]
 extra-dependencies = [
-  "anyio",
   "asgi-tools",
   "asgiref",
-  "fastapi>=0.109.0",
+  "exceptiongroup",
+  "fastapi",
+  "jsonpointer",
   "orjson",
-  "playwright==1.41.1",
+  "playwright",
+  "plotly",
+  "pydantic>=2.5.3",
+  "pyright",
   "pytest-asyncio",
-  "pytest-timeout==2.2.0",
+  "pytest-sugar",
+  "responses",
   "servestatic",
-  "trio>=0.24.0",
-  "uvicorn>=0.36.0",
-  "websockets",
+  "servestatic",
+  "uvicorn[standard]",
 ]
 randomize = true
 matrix-name-format = "{variable}-{value}"
 
 [[tool.hatch.envs.hatch-test.matrix]]
-python = ["3.9", "3.10", "3.11", "3.12"]
+python = ["3.10", "3.11", "3.12", "3.13"]
 
+[tool.pytest.ini_options]
+testpaths = "tests"
+log_cli_level = "INFO"
+filterwarnings = "ignore::DeprecationWarning"
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+
+################################
+# >>> Hatch Python Scripts <<< #
+################################
+
+[tool.hatch.envs.python]
+extra-dependencies = ["pyright"]
+
+[tool.hatch.envs.python.scripts]
+type_check = ["pyright reactpy_table"]
+
+[tool.hatch.envs.javascript]
+detached = true
 #########################
 # >>> Generic Tools <<< #
 #########################
@@ -87,15 +107,3 @@ typeCheckingMode = "strict"
 pythonVersion = "3.11"
 
 
-[tool.pytest.ini_options]
-testpaths = "tests"
-log_cli_level = "INFO"
-filterwarnings = "ignore::DeprecationWarning"
-asyncio_mode = "auto"
-asyncio_default_fixture_loop_scope = "function"
-
-# -r Show extra test summary info as specified by chars:
-#   (s)kipped,
-#   (x)failed,
-#   (X)passed,
-# addopts = "-rsxX"
