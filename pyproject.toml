@@ -49,21 +49,13 @@ installer = "uv"
 
 [tool.hatch.envs.hatch-test]
 extra-dependencies = [
-  "asgi-tools",
   "asgiref",
   "exceptiongroup",
-  "fastapi",
-  "jsonpointer",
-  "orjson",
   "playwright",
-  "plotly",
   "pydantic>=2.5.3",
   "pyright",
   "pytest-asyncio",
   "pytest-sugar",
-  "responses",
-  "servestatic",
-  "servestatic",
   "uvicorn[standard]",
 ]
 randomize = true
