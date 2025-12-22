@@ -1,4 +1,3 @@
-import pytest
 from playwright.async_api import Page
 
 from tests.page_containers import PicoContainer

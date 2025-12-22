@@ -5,8 +5,6 @@ from examples.form_login import LoginForm
 from tests.page_containers import PicoContainer
 from tests.tooling.helpers import page_element, input_field
 
-from .tooling import page_stable
-
 # hatch test tests/test_login_form.py
 
 async def test_form(pico_container: PicoContainer, page: Page):

@@ -6,16 +6,16 @@ with automatic server setup, similar to ReactPy v1 behavior.
 """
 
 import sys
-from typing import Any, Callable, List, Optional, Union
+from typing import Any, List, Optional
 
 import uvicorn
 from reactpy import component, html
-from reactpy.types import ComponentType, VdomDict
+from reactpy.types import RootComponentConstructor, VdomDict
 from reactpy.executors.asgi import ReactPy
 
 
 def run(
-    app_main: ComponentType,
+    app_main: RootComponentConstructor,
     host: str = "127.0.0.1",
     port: int = 8000,
     title: str = "ReactPy Forms",
@@ -55,12 +55,12 @@ def run(
     elif "children" in head:
         # Add title to existing head if not present
         has_title = any(
-            child.get("tagName") == "title"
-            for child in head.get("children", [])
+            child.get("tagName") == "title"  # type: ignore
+            for child in head.get("children", [])  # type: ignore
             if isinstance(child, dict)
         )
         if not has_title:
-            head["children"].insert(0, html.title(title))
+            head["children"].insert(0, html.title(title))  # type: ignore
     else:
         head["children"] = [html.title(title)]
 
@@ -83,7 +83,7 @@ def run(
 
 
 def pico_run(
-    app: ComponentType,
+    app: RootComponentConstructor,
     host: str = "127.0.0.1",
     port: int = 8000,
     title: str = "ReactPy Forms",

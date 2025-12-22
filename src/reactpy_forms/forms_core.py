@@ -6,7 +6,7 @@ from pydantic_core import ErrorDetails
 
 from reactpy import event, html, use_state
 from reactpy.types import ComponentType, State, VdomDict
-from reactpy.core.hooks import HOOK_STACK
+from reactpy.core._life_cycle_hook import HOOK_STACK
 
 from reactpy_forms.field_model import FieldValidationError
 from reactpy_forms.form_model import FormModel

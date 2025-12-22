@@ -3,10 +3,12 @@ from __future__ import annotations
 import asyncio
 import os
 import subprocess
+from typing import AsyncGenerator
 
 import pytest
 from _pytest.config import Config
 from _pytest.config.argparsing import Parser
+from playwright.async_api import Browser, Page
 
 from reactpy.config import (
     REACTPY_ASYNC_RENDERING,
@@ -73,7 +75,7 @@ def create_hook_state():
 
 
 @pytest.fixture
-async def display(server, page):
+async def display(server: BackendFixture, page: Page) -> AsyncGenerator[DisplayFixture, None]:
     async with DisplayFixture(server, page) as display:
         yield display
 
@@ -90,7 +92,7 @@ async def pico_container(display: DisplayFixture):
 
 
 @pytest.fixture
-async def page(browser):
+async def page(browser: Browser) -> AsyncGenerator[Page, None]:
     context = await browser.new_context(permissions=["clipboard-read", "clipboard-write"])
     pg = await context.new_page()
     pg.set_default_timeout(REACTPY_TESTS_DEFAULT_TIMEOUT.current * 1000)
@@ -133,7 +135,7 @@ def assert_no_logged_exceptions():
         yield
         try:
             for r in records:
-                if r.exc_info is not None:
+                if r.exc_info is not None and r.exc_info[1] is not None:
                     raise r.exc_info[1]
         finally:
             records.clear()

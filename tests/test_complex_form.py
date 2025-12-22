@@ -1,4 +1,3 @@
-import pytest
 from examples.form_complex import ComplexForm
 from tests.page_containers import PicoContainer
 

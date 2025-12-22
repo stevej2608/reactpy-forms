@@ -1,5 +1,5 @@
 from reactpy import component, html
-from reactpy.types import ComponentType
+from reactpy.types import RootComponentConstructor
 from reactpy.testing import DisplayFixture
 
 
@@ -12,7 +12,7 @@ class PicoContainer:
     def __init__(self, display:DisplayFixture):
         self.display = display
 
-    async def show(self, app: ComponentType) -> None:
+    async def show(self, app: RootComponentConstructor) -> None:
         """Show a ReactPy component in a Pico CSS styled container.
 
         Args:
