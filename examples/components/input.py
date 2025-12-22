@@ -1,7 +1,7 @@
 from typing import Literal, Union
 from reactpy import component, html
 from reactpy.types import VdomChildren
-from utils.props import props
+from reactpy_forms.props import props
 from utils.types import Props
 
 from .utils import ID
