@@ -4,7 +4,7 @@ from reactpy.testing import DisplayFixture
 
 
 from utils.server_options.pico_options import PICO_CSS
-from .tooling import page_stable
+from .tooling import wait_page_stable
 
 class PicoContainer:
     """Simple wrapper for the reactpy component being tested"""
@@ -32,4 +32,4 @@ class PicoContainer:
 
 
     async def page_stable(self):
-        await page_stable(self.display.page)
+        await wait_page_stable(self.display.page)

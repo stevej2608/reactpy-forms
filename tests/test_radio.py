@@ -1,7 +1,7 @@
 from playwright.async_api import Page
 
 from tests.page_containers import PicoContainer
-from tests.tooling.helpers import page_element, radio_btn_element
+from tests.tooling.playwright_helpers import page_element, radio_btn_element
 
 from examples.form_radio_btn import TestForm
 
@@ -19,7 +19,7 @@ async def test_select(pico_container: PicoContainer, page: Page):
     selected = page_element(page, '#radio_example')
     get_radio_btn_checked, set_radio_btn = radio_btn_element(page, "english")
 
-    # Confirm initial condiion
+    # Confirm initial condition
 
     assert (await selected()) == "Selected:language='english'"
 
