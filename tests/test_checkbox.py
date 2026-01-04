@@ -1,6 +1,6 @@
 from playwright.async_api import Page
 
-from tests.page_containers import PicoContainer
+from tests.tooling.page_containers import IContainer
 from tests.tooling.playwright_helpers import page_element, checkbox_element
 
 from examples.form_checkbox import TestForm
@@ -8,7 +8,7 @@ from examples.form_checkbox import TestForm
 # pytest -o log_cli=1 --headed tests/test_checkbox.py
 
 
-async def test_checkbox(container: PicoContainer):
+async def test_checkbox(container: IContainer):
     """Confirm support for html checkbox field"""
 
     # Render the test component

@@ -1,13 +1,13 @@
 from playwright.async_api import Page
 
-from tests.page_containers import PicoContainer
+from tests.tooling.page_containers import IContainer
 from tests.tooling.playwright_helpers import page_element, radio_btn_element
 
 from examples.form_radio_btn import TestForm
 
 # pytest -o log_cli=1 --headed tests/test_radio.py
 
-async def test_select(container: PicoContainer):
+async def test_select(container: IContainer):
     """Confirm support for html radio buttons field"""
 
     # Render the test component

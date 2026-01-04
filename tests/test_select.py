@@ -1,13 +1,13 @@
 from playwright.async_api import Page
 
-from tests.page_containers import PicoContainer
+from tests.tooling.page_containers import IContainer
 from tests.tooling.playwright_helpers import page_element, select_element
 
 from examples.form_select import TestForm
 
 # pytest -o log_cli=1 --headed tests/test_select.py
 
-async def test_select(container: PicoContainer):
+async def test_select(container: IContainer):
     """Confirm support for html select field"""
 
     # Render the test component

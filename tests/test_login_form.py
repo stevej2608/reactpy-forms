@@ -2,12 +2,12 @@
 from playwright.async_api import Page
 
 from examples.form_login import LoginForm
-from tests.page_containers import PicoContainer
+from tests.tooling.page_containers import IContainer
 from tests.tooling.playwright_helpers import page_element, input_field
 
 # hatch test tests/test_login_form.py
 
-async def test_form(container: PicoContainer):
+async def test_form(container: IContainer):
 
     await container.show(LoginForm)
     await container.page_stable()
