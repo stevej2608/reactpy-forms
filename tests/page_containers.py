@@ -1,13 +1,18 @@
 from reactpy import component, html
 from reactpy.types import RootComponentConstructor
 from reactpy.testing import DisplayFixture
-
+from playwright.async_api import Page
 
 from utils.server_options.pico_options import PICO_CSS
 from .tooling import wait_page_stable
 
 class PicoContainer:
     """Simple wrapper for the reactpy component being tested"""
+
+    @property
+    def page(self) -> Page:
+        return self.display.page
+
 
     def __init__(self, display:DisplayFixture):
         self.display = display

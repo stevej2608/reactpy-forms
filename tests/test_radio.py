@@ -7,7 +7,7 @@ from examples.form_radio_btn import TestForm
 
 # pytest -o log_cli=1 --headed tests/test_radio.py
 
-async def test_select(pico_container: PicoContainer, page: Page):
+async def test_select(pico_container: PicoContainer):
     """Confirm support for html radio buttons field"""
 
     # Render the test component
@@ -16,8 +16,8 @@ async def test_select(pico_container: PicoContainer, page: Page):
 
     # setup helpers
 
-    selected = page_element(page, '#radio_example')
-    get_radio_btn_checked, set_radio_btn = radio_btn_element(page, "english")
+    selected = page_element(pico_container.page, '#radio_example')
+    get_radio_btn_checked, set_radio_btn = radio_btn_element(pico_container.page, "english")
 
     # Confirm initial condition
 
@@ -25,7 +25,7 @@ async def test_select(pico_container: PicoContainer, page: Page):
 
     # Select and confirm 'French'
 
-    get_radio_btn_checked, set_radio_btn = radio_btn_element(page, "french")
+    get_radio_btn_checked, set_radio_btn = radio_btn_element(pico_container.page, "french")
 
     await set_radio_btn('french')
     assert (await  get_radio_btn_checked()) is True
@@ -36,7 +36,7 @@ async def test_select(pico_container: PicoContainer, page: Page):
 
     # Select and confirm 'Thai'
 
-    get_radio_btn_checked, set_radio_btn = radio_btn_element(page, "thai")
+    get_radio_btn_checked, set_radio_btn = radio_btn_element(pico_container.page, "thai")
 
     await set_radio_btn('thai')
     assert (await  get_radio_btn_checked()) is True

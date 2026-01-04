@@ -7,15 +7,15 @@ from tests.tooling.playwright_helpers import page_element, input_field
 
 # hatch test tests/test_login_form.py
 
-async def test_form(pico_container: PicoContainer, page: Page):
+async def test_form(pico_container: PicoContainer):
 
     await pico_container.show(LoginForm)
     await pico_container.page_stable()
 
-    get_error = page_element(page, '#email-error')
+    get_error = page_element(pico_container.page, '#email-error')
 
-    get_email, set_email = input_field(page, '#email')
-    get_password, _set_password = input_field(page, '#password')
+    get_email, set_email = input_field(pico_container.page, '#email')
+    get_password, _set_password = input_field(pico_container.page, '#password')
 
     # Test initial condition
 

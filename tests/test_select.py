@@ -7,7 +7,7 @@ from examples.form_select import TestForm
 
 # pytest -o log_cli=1 --headed tests/test_select.py
 
-async def test_select(pico_container: PicoContainer, page: Page):
+async def test_select(pico_container: PicoContainer):
     """Confirm support for html select field"""
 
     # Render the test component
@@ -17,8 +17,8 @@ async def test_select(pico_container: PicoContainer, page: Page):
     
     # setup helpers
 
-    selected = page_element(page, '#selected_example')
-    get_select_option, set_select_option = select_element(page, '#select_example')
+    selected = page_element(pico_container.page, '#selected_example')
+    get_select_option, set_select_option = select_element(pico_container.page, '#select_example')
 
     # Confirm initial condiion
 
