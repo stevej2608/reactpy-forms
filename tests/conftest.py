@@ -43,7 +43,7 @@ async def server() -> AsyncGenerator[BackendFixture, None]:
 
 
 @pytest.fixture
-async def pico_container(display: DisplayFixture):
+async def container(display: DisplayFixture):
     return PicoContainer(display)
 
 
