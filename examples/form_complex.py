@@ -1,6 +1,6 @@
 from typing import Union
 from reactpy import component, event, html
-from reactpy.types import EventHandlerType
+from reactpy.types import EventHandlerFunc
 from reactpy_forms import create_form, FormModel, use_form_state
 
 from utils.logger import log, logging
@@ -27,7 +27,7 @@ def ComplexForm():
         log.info('SUBMIT [%s]', model)
 
     @component
-    def SubmitButton(label: str, model: FormModel, on_click: EventHandlerType):
+    def SubmitButton(label: str, model: FormModel, on_click: EventHandlerFunc):
         return html.input({'type': 'submit', 'value': label, 'disabled': model.has_errors(), 'onClick': on_click})
 
 

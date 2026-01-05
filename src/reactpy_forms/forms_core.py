@@ -5,7 +5,7 @@ from pydantic import ValidationError
 from pydantic_core import ErrorDetails
 
 from reactpy import event, html, use_state
-from reactpy.types import ComponentType, State, VdomDict
+from reactpy.types import Component, State, VdomDict
 from reactpy.core._life_cycle_hook import HOOK_STACK
 
 from reactpy_forms.field_model import FieldValidationError
@@ -92,7 +92,7 @@ def create_form(model: TFormModel, set_model: SetModelFunc[TFormModel]) -> Tuple
     ```
     """
 
-    def _field(name:str, fn:Callable[[Any, Any], Any]) -> ComponentType:
+    def _field(name:str, fn:Callable[[Any, Any], Any]) -> Component:
 
         if not model.has_field(name):
             raise FieldValidationError(f'Field "{name}" is not defined in the form model')

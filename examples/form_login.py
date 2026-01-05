@@ -1,7 +1,7 @@
 from typing import Union
 from pydantic import field_validator, ValidationInfo
 from reactpy import component, html, event
-from reactpy.types import EventHandlerType
+from reactpy.types import EventHandlerFunc
 
 from reactpy_forms import create_form, FieldModel, FormModel, FieldValidationError, use_form_state
 from utils.logger import log, logging
@@ -31,7 +31,7 @@ def TextInput(label: str, props: Props, field: FieldModel):
     )
 
 @component
-def SubmitButton(label: str, model: FormModel, on_click: EventHandlerType):
+def SubmitButton(label: str, model: FormModel, on_click: EventHandlerFunc):
     return html.input({'type': 'submit', 'value': label, 'disabled': model.has_errors(), 'onClick': on_click})
 
 
