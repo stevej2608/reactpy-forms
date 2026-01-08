@@ -1,5 +1,3 @@
-from playwright.async_api import Page
-
 from tests.tooling.page_containers import IContainer
 from tests.tooling.playwright_helpers import page_element, checkbox_element
 

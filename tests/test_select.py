@@ -1,5 +1,3 @@
-from playwright.async_api import Page
-
 from tests.tooling.page_containers import IContainer
 from tests.tooling.playwright_helpers import page_element, select_element
 
@@ -20,7 +18,7 @@ async def test_select(container: IContainer):
     selected = page_element(container.page, '#selected_example')
     get_select_option, set_select_option = select_element(container.page, '#select_example')
 
-    # Confirm initial condiion
+    # Confirm initial condition
 
     assert (await selected()) == 'Selected:None'
 
