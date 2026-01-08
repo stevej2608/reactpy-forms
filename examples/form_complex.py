@@ -6,6 +6,8 @@ from reactpy_forms import create_form, FormModel, use_form_state
 from utils.logger import log, logging
 from utils.types import EventArgs
 
+from utils.app_runner import PicoRunner
+
 from .components.input import FieldSet, Input, RangeSlider, Select, TextInput
 
 class ComplexFormData(FormModel):
@@ -125,6 +127,5 @@ def ComplexForm():
 # python -m examples.form_complex
 
 if __name__ == "__main__":
-    from utils.pico_run import pico_run
     log.setLevel(logging.INFO)
-    pico_run(ComplexForm)
+    PicoRunner.run(ComplexForm)

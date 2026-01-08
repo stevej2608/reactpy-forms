@@ -3,7 +3,7 @@ from reactpy import component, html
 from reactpy_forms import FormModel, create_form, use_form_state
 from utils.logger import log, logging
 
-from utils.pico_run import pico_run
+from utils.app_runner import PicoRunner
 
 class FormData(FormModel):
     favorite_food: Union[str, None] = None
@@ -39,4 +39,4 @@ def TestForm():
 
 if __name__ == "__main__":
     log.setLevel(logging.INFO)
-    pico_run(TestForm)
+    PicoRunner.run(TestForm)

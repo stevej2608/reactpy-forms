@@ -7,6 +7,7 @@ from reactpy_forms import create_form, FieldModel, FormModel, FieldValidationErr
 from utils.logger import log, logging
 from utils.types import Props, EventArgs
 
+from utils.app_runner import PicoRunner
 
 class LoginFormData(FormModel):
     email: Union[str, None] = None
@@ -59,6 +60,5 @@ def LoginForm():
 # python -m examples.form_login
 
 if __name__ == "__main__":
-    from utils.pico_run import pico_run
     log.setLevel(logging.INFO)
-    pico_run(LoginForm)
+    PicoRunner.run(LoginForm)

@@ -55,7 +55,7 @@ extra-dependencies = [
   "pillow",
   "pixelmatch",
   "playwright",
-  "pydantic>=2.5.3",
+  "pydantic",
   "pyright",
   "pytest-asyncio",
   "pytest-sugar",
